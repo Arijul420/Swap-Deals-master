@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="941fb3af824d4921abca92cdab40c828" Name="Diagram1">
+        <EntityTypeShape EntityType="SwapDealsDBModel.Admin" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.Advertisement" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.Booking" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.Deal" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.Message" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SwapDealsDBModel.User" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Advertise__Produ__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Advertise__UserI__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Booking__AdID__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Booking__UserID__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Deals__BookingID__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Deals__UserID1__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Deals__UserID2__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="SwapDealsDBModel.FK__Messages__UserID__25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,111 @@
+﻿@using SwapDeals.Models
+@model SwapDeals.Models.Booking
+
+@{
+    ViewBag.Title = "Book Ad";
+    var ad = (Advertisement)ViewData["Ad"];
+}
+
+<h2>Book Ad</h2>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Selling Product :
+        </dt>
+
+        <dd>
+            @ad.SellingProduct
+        </dd>
+        <dt>
+            Your product :
+        </dt>
+
+        <dd>
+           @ad.TargatedProduct
+        </dd>
+
+        <dt>
+            Cash(negative means you will receive) : 
+           
+        </dt>
+
+        <dd>
+            @ad.AdjustedValue 
+        </dd>
+
+        <dt>
+            Product Image :
+        </dt>
+
+        <dd>
+
+            <img src="@Url.Content(ad.Images)" class="img-fluid" alt="pic" height="350" width="350">
+
+        </dd>
+
+        <dt>
+           Product Description :
+        </dt>
+
+        <dd>
+            @ad.ProductDescription
+        </dd>
+
+        <dt>
+            Warranty :
+        </dt>
+
+        <dd>
+            @ad.Warranty
+        </dd>
+
+        <dt>
+            Ad posted By :
+        </dt>
+
+        <dd>
+           @ad.User.UserName
+        </dd>
+
+
+
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirm Booking" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Go Back", "Ads", "Advetisements")
+</div>

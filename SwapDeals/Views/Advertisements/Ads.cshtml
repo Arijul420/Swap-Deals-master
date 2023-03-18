@@ -1,0 +1,90 @@
+﻿
+@using SwapDeals.Models
+@model SwapDeals.Models.TempAds
+@{
+    ViewBag.Title = "Ads";
+}
+<div class="row" >
+    <hr />
+    <div class="col-lg-4"> </div>
+    <div class="col-lg-4">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TargatedProduct, new { htmlAttributes = new { placeholder = " Enter targeted product", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TargatedProduct, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SellingProduct, new { htmlAttributes = new { placeholder = " Enter selling product", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SellingProduct, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Search" class="btn btn-success btn-block" />
+                    </div>
+
+                </div>
+
+
+            </div>
+        }
+    </div>
+    <div class="col-lg-4"> </div>
+</div>
+<div class="hot-product">
+    <div class="container">
+        <div class="all-tag">
+            <h2>Search Result</h2>
+        </div>
+        <div class="row">
+            @foreach (var ad in ViewData["Ads"] as IEnumerable<Advertisement>)
+            {
+                if (Convert.ToInt32(Session["user_id"]) != ad.UserID)
+                {
+                    <div class="col-md-4">
+                        <div class="hot-item-top">
+                            <img src="@Url.Content(ad.Images)" class="img-fluid" alt="pic">
+                            <div class="hot-overlay">
+                                @if (Session["user_id"] == null)
+                                {
+
+                                    <input type="button" value="Details" class="btn btn-primary" onclick="alert('Login to continue')" />
+
+                                }
+                                else
+                                {
+
+
+                                    <input type="button" value="Details" class="btn btn-primary" onclick="location.href = '@Url.Action("Details/" + ad.AdID, "Advertisements")'" />
+                                   
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="hot-item-bottom">
+                            <h5>Selling @ad.SellingProduct</h5>
+                            <h6>Want @ad.TargatedProduct</h6>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+    </div>
+</div>
+
+

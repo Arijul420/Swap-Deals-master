@@ -1,0 +1,126 @@
+﻿@model SwapDeals.Models.Deal
+@using SwapDeals.Models
+ 
+@{
+    ViewBag.Title = "Deal Details";
+    Advertisement x =(Advertisement) ViewData["ad"];
+}
+
+<h2>Deal Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DealID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DealID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookingID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserID1)
+        </dd>
+        <dt>
+            User 1 Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        @if (Session["admin"] != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.User1Rating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.User1Rating)
+            </dd>
+        }
+    <dt>
+        @Html.DisplayNameFor(model => model.UserID2)
+    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserID2)
+        </dd>
+        <dt>
+            User 2 Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User1.UserName)
+        </dd>
+        @if (Session["admin"] != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.User2Rating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.User2Rating)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Revenue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Revenue)
+            </dd>
+        }
+
+        <dt>
+            Selling Product
+        </dt>
+        <dd>
+            @if (Convert.ToInt32(Session["user_id"]) == x.UserID)
+            { 
+                @x.SellingProduct
+            }
+            else
+            {
+                @x.TargatedProduct
+            }
+        </dd>
+        <dt>
+           Targeted Product
+        </dt>
+
+        <dd>
+            @if (Convert.ToInt32(Session["user_id"]) == x.UserID)
+            {
+                @x.TargatedProduct
+            }
+            else
+            {
+                @x.SellingProduct
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

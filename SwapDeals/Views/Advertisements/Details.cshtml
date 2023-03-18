@@ -1,0 +1,154 @@
+﻿@using SwapDeals.Models
+@model SwapDeals.Models.Advertisement
+
+@{
+   
+    ViewBag.Title = "Details";
+    int f = (int)ViewData["Booked"];
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Advertisement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SellingProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellingProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargatedProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargatedProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdjustedValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdjustedValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Images)
+        </dt>
+
+        <dd>
+
+            <img src="@Url.Content(Model.Images)" class="img-fluid" alt="pic" height="350" width="350">
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriorityStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriorityStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warranty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warranty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserAdress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserAdress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Rating)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["admin"] != null)
+    {
+
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AdID }) <h5> </h5>
+        @Html.ActionLink("Back to List", "Index") 
+
+    }
+    else
+    {
+
+        @Html.ActionLink("Back", "Ads") <h5> </h5>
+        if (Convert.ToInt32(Session["user_id"]) != Model.UserID  && f==0)
+        {
+            <input type="button" value="Book" class="btn btn-primary" onclick="location.href = '@Url.Action("Book/" + Model.AdID, "Bookings")'" />
+        }
+
+    }
+</p>

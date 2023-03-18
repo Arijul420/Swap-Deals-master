@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SwapDeals.Models.Booking>
+
+@{
+    ViewBag.Title = "Your Booked Ads";
+}
+
+<h2>Your Booked Ads</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Advertisement.SellingProduct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Advertisement.SellingProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+                <p>
+                    <br>
+                    <input type="button" value="Ad details" class="btn btn-primary" onclick="location.href = '@Url.Action("Details/" + item.AdID, "Advertisements")'" />
+                    <input type="button" value="Finish deal" class="btn btn-primary" onclick="location.href = '@Url.Action("FinishBookedDeal/" + item.BookingID, "Deals")'" />
+
+                </p>
+            </td>
+        </tr>
+    }
+
+</table>

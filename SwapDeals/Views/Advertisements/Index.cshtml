@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SwapDeals.Models.Advertisement>
+
+@{
+    ViewBag.Title = "Posted Ads";
+}
+
+<h2>All ads</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            AdID
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SellingProduct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TargatedProduct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdjustedValue)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriorityStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warranty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SellingProduct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TargatedProduct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdjustedValue)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriorityStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warranty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @if (Session["user_id"] != null)
+            {
+                @Html.ActionLink("Edit", "EditUserAd", new { id = item.AdID }) <h5> </h5>
+                <input type="button" value="Finish deal" class="btn btn-primary" onclick="location.href = '@Url.Action("FinishPostedDeal/" + item.AdID, "Deals")'" />
+
+            }
+            else
+            {
+                @Html.ActionLink("Edit", "EditAllAds", new { id = item.AdID })
+            }
+
+            | @Html.ActionLink("Details", "Details", new { id = item.AdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AdID })
+
+
+        </td>
+    </tr>
+}
+
+</table>
